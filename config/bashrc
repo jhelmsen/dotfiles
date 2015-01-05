@@ -1,0 +1,59 @@
+# Add to path if not already
+path_prepend ()
+{
+    if [ -d "$1" ]; then
+        PATH=${PATH//":$1"/} #delete any instances in the middle or at the end
+        PATH=${PATH//"$1:"/} #delete any instances at the beginning
+        export PATH="$1:$PATH" #prepend to beginning
+    fi
+}
+path_prepend ~/bin
+path_prepend /usr/local/bin
+
+# Bash git completion if it exists
+if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash ]; then
+    . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-completion.bash
+fi
+if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh ]; then
+    . /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh
+fi
+
+# Color codes
+NORMAL='\[\033[0m\]'
+RED='\[\033[0;31m\]'
+GREEN='\[\033[0;32m\]'
+BLUE='\[\033[0;34m\]'
+YELLOW='\[\033[0;33m\]'
+CYAN='\[\033[0;36m\]'
+
+# Set prompt
+#if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh ]; then
+#    PS1="[$(date +%H:%M)] ${CYAN}\u@\h${RED}$(__git_ps1 " (%s) ")${YELLOW} \!${NORMAL}\$ "
+#else
+#    PS1="[$(date +%H:%M)] ${CYAN}\u@\h${NORMAL}${YELLOW} \!${NORMAL}\$ "
+#fi
+# Set window title to directory path
+export PROMPT_COMMAND='/bin/echo -n "]0;$HOSTNAME:${PWD/#$HOME/~}"; history -a'
+export PS1='\w > '
+
+# Set default editor to vi
+export EDITOR=vi
+
+# Set default file permissions
+umask 022
+
+DC_PATH=`which dircolors | cut -d " " -f1`
+if [ $DC_PATH ]; then
+    DC_BASE=`basename $DC_PATH`
+fi
+if [ "$DC_BASE" = "dircolors" ]; then
+    alias ls='ls --color'
+    eval `dircolors -b`
+elif [ `uname` == "Darwin" ]; then
+    if [ -e /usr/local/bin/gls ]; then
+        alias ls='/usr/local/bin/gls --color'
+        eval `/usr/local/bin/gdircolors -b`
+    else
+        alias ls='ls -G'
+    fi
+fi

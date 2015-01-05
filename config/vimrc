@@ -1,0 +1,57 @@
+colo xoria256
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+Plugin 'tpope/vim-fugitive'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+call vundle#end()
+
+syntax on
+filetype plugin indent on
+
+set nocompatible
+set backspace=indent,eol,start
+
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set smarttab
+
+set number
+set wmh=0
+set ruler
+set mousehide
+set mouse=a
+
+set incsearch
+set hlsearch
+
+set autoindent
+set hidden
+
+set wildmenu
+set wildmode=longest,list
+
+nmap <c-h> <c-w>h
+nmap <c-l> <c-w>l
+nmap <c-j> <c-w>j
+nmap <c-k> <c-w>k
+nmap <silent> <esc>h :tabprev<CR>
+nmap <silent> <esc>j :bn<CR>
+nmap <silent> <esc>k :bp<CR>
+nmap <silent> <esc>l :tabnext<CR>
+
+map <silent> <F4> :silent noh<CR>
+
+map!  <C-c>	    <esc>
+let mapleader = ","
+
+map <silent> <leader>b :call BufferList()<CR>
+map <leader>c :lcd %:p:h<cr>
+
+command! W :w
+
+autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass set ai sw=2 sts=2 et

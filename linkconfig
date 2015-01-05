@@ -1,0 +1,13 @@
+#!/bin/sh
+for f in $HOME/bin/config/*
+do
+  base=`basename $f`
+  link=$HOME/.$base
+  if [ ! -e $link ]
+  then
+    echo $link '->' $f
+    ln -s $f $link
+  else
+    echo $link exists, skipping
+  fi
+done

@@ -1,0 +1,3 @@
+config/vim/bundle/vim-clojure-static
+config/vim/bundle/vim-fireplace
+config/vim/bundle/vim-fugitive
