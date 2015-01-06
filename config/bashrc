@@ -26,6 +26,17 @@ BLUE='\[\033[0;34m\]'
 YELLOW='\[\033[0;33m\]'
 CYAN='\[\033[0;36m\]'
 
+host=`hostname`
+if [ $host == "Ken-Allens-MBP" ]
+then
+    PREFIX='M'
+elif [ $host == "localhost" ]
+then
+    PREFIX='V'
+else
+    PREFIX='?'
+fi
+
 # Set prompt
 #if [ -f /Applications/Xcode.app/Contents/Developer/usr/share/git-core/git-prompt.sh ]; then
 #    PS1="[$(date +%H:%M)] ${CYAN}\u@\h${RED}$(__git_ps1 " (%s) ")${YELLOW} \!${NORMAL}\$ "
@@ -34,7 +45,7 @@ CYAN='\[\033[0;36m\]'
 #fi
 # Set window title to directory path
 export PROMPT_COMMAND='/bin/echo -n "]0;$HOSTNAME:${PWD/#$HOME/~}"; history -a'
-export PS1='\w > '
+export PS1="[$PREFIX] \w > "
 
 # Set default editor to vi
 export EDITOR=vi
