@@ -8,6 +8,8 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-leiningen'
 Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'jlanzarotta/bufexplorer'
 call vundle#end()
 
 syntax on
@@ -49,11 +51,7 @@ nmap <silent> <esc>l :tabnext<CR>
 map <silent> <F4> :silent noh<CR>
 
 map!  <C-c>	    <esc>
-let mapleader = ","
 
-map <silent> <leader>b :call BufferList()<CR>
-map <leader>c :lcd %:p:h<cr>
-
-command! W :w
-
-autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass set ai sw=2 sts=2 et
+map <silent> <leader>e :Eval<CR>
+map <silent> <leader>r :Require<CR>
+map <silent> <leader>p :RainbowParenthesesToggle<CR>
