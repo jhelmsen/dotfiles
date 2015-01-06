@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+NETS = [["10.100.131", "home", "10.100.131.106"],
+        ["10.99.99", "office", "10.99.99.138"]]
+
+ifconfig = `ifconfig`
+
+NETS.each do |n|
+  mask, name, ip = n
+  if ifconfig.include? mask
+    puts "At #{name}!"
+    exec "ssh -A kallen@#{ip}"
+  end
+end
