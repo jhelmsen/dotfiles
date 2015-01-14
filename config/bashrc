@@ -30,7 +30,7 @@ host=`hostname`
 if [ $host == "Ken-Allens-MBP" ]
 then
     PREFIX='M'
-elif [ $host == "localhost" ]
+elif [ $host == "localhost" ] || [ $host == "LG_Dev_VM" ]
 then
     PREFIX='V'
 else
@@ -48,7 +48,7 @@ export PROMPT_COMMAND='/bin/echo -n "]0;$HOSTNAME:${PWD/#$HOME/~}"; history -a
 export PS1="[$PREFIX] \w > "
 
 # Set default editor to vi
-export EDITOR=vi
+export EDITOR=vim
 
 # Set default file permissions
 umask 022
