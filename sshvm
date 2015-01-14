@@ -2,12 +2,7 @@
 NETS = [["10.100.131", "home", "10.100.131.106"],
         ["10.99.99", "office", "10.99.99.138"]]
 
-ifconfig = `ifconfig`
+ip = `arp -a`.lines.detect{|l| l.include? "0:c:29:21:c5:1e"}.scan(/\((.*)\)/).first.first
 
-NETS.each do |n|
-  mask, name, ip = n
-  if ifconfig.include? mask
-    puts "At #{name}!"
-    exec "ssh -A kallen@#{ip}"
-  end
-end
+puts "IP: #{ip}"
+exec "ssh -A kallen@#{ip}"
