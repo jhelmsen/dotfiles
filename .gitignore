@@ -6,3 +6,4 @@ config/vim/bundle/paredit.vim
 config/vim/bundle/bufexplorer
 config/vim/bundle/rainbow_parentheses.vim
 config/lein/self-installs
+config/vim/.netrwhist

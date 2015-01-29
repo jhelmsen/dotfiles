@@ -6,7 +6,7 @@ call vundle#begin()
 Plugin 'tpope/vim-fugitive'
 Plugin 'guns/vim-clojure-static'
 Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
+"Plugin 'tpope/vim-leiningen'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'jlanzarotta/bufexplorer'
@@ -55,3 +55,5 @@ map!  <C-c>	    <esc>
 map <silent> <leader>e :Eval<CR>
 map <silent> <leader>r :Require<CR>
 map <silent> <leader>p :RainbowParenthesesToggle<CR>
+
+set lispwords+=go-loop,go,when-not
